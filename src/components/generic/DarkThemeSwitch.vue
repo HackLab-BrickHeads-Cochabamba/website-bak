@@ -1,5 +1,5 @@
 <template>
   <div class="text-white">
-    (switch)
+    <input type="checkbox" class="toggle" checked />
   </div>
 </template>

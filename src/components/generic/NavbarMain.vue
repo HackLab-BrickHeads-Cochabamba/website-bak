@@ -22,7 +22,7 @@ export default defineComponent({
 <template>
   <nav class="bg-neutral-900 border-gray-200 px-2 sm:px-4 py-2.5">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
-      <a href="https://brickheads.space/" class="flex items-center">
+      <a href="/" class="flex items-center">
         <img
           src="/images/hacklab_heads.png"
           class="h-6 mr-3 sm:h-9"
