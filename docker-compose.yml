@@ -1,19 +1,17 @@
 version: '3'
 
 services:
-  frontend:
+  hacklab-website:
     image: cr0wg4n/hacklab-website
     container_name: hacklab-website
     labels:
       - traefik.enable=true
-      - traefik.backend=nginx
+      - traefik.backend=hacklab-website
       - traefik.frontend.rule=Host:${CONTAINER_DOMAIN}
       - traefik.docker.network=traefik_network
       - traefik.port=${CONTAINER_PORT}
     networks:
       - traefik_network
-    ports:
-      - 7171:80
 
 networks:
   traefik_network:
