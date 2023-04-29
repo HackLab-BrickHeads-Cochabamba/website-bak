@@ -12,6 +12,8 @@ services:
       - traefik.port=${CONTAINER_PORT}
     networks:
       - traefik_network
+    ports:
+      - 7171:80
 
 networks:
   traefik_network:
