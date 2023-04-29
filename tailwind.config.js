@@ -9,8 +9,8 @@ module.exports = {
     themes: [
       {
         hacklab: {
-          // primary: "#1FD750",
-          primary: "#a3e635",
+          primary: "#1FD750",
+          // primary: "#a3e635",
           secondary: "#FFFFFF",
           accent: "#181818",
           neutral: "#181818",
