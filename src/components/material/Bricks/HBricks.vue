@@ -4,6 +4,7 @@ import { ref, watch } from "vue";
 import type { Elements } from "@vue-flow/core";
 import { useWindowSize } from "@vueuse/core";
 import { defineNodes } from "./elements";
+import HText from "../HText.vue";
 
 const { onPaneReady, panOnDrag, onNodeMouseEnter } = useVueFlow();
 const { width } = useWindowSize();
@@ -18,17 +19,19 @@ function redefineNode(width: number): Elements {
   let elements: Elements = [];
   panOnDrag.value = false;
   if (width > 1550) {
-    elements = defineNodes();
+    elements = defineNodes(220, 160, 100);
     letterSpacing.value = "100px";
   } else if (width > 1400) {
-    elements = defineNodes(150, 75, 100);
+    elements = defineNodes(150, 100, 100);
     letterSpacing.value = "80px";
   } else if (width > 800) {
-    elements = defineNodes(120, 60, 80);
+    elements = defineNodes(150, 140, 80);
     letterSpacing.value = "30px";
   } else {
     elements = defineNodes();
-    panOnDrag.value = true;
+    elements = defineNodes(150, 140, 80);
+    // panOnDrag.value = true;
+    letterSpacing.value = "20px";
   }
   return elements;
 }
@@ -41,21 +44,37 @@ onNodeMouseEnter(({ node }) => {
   subject.value = node.id;
 });
 
-watch(width, (newWidth: number) => {
-  elements.value = redefineNode(newWidth);
-  renderCounter.value += 1;
-});
+watch(
+  width,
+  (newWidth: number) => {
+    elements.value = redefineNode(newWidth);
+    renderCounter.value += 1;
+  },
+  { immediate: true }
+);
+
+const translations: any = {
+  technology: "Tecnología",
+  science: "Ciencia",
+  culture: "Cultura",
+  education: "Educación",
+};
+
+const translation = (key: string): any => {
+  return translations[key];
+};
 </script>
 
 <template>
-  <div :style="{ height: '720px', width: '100%' }" class="relative">
+  <div :style="{ height: '800px', width: '100%' }" class="relative">
     <div
-      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 uppercase opacity-20 lg:text-9xl md:text-8l sm:text-3xl"
+      class="absolute flex justify-center items-center h-full w-full lg:text-9xl md:text-8l sm:text-3xl text-2xl"
       :style="{
         letterSpacing,
+        textTransform: 'uppercase',
       }"
     >
-      {{ subject }}
+      <span class="pt-4 -mr-6">{{ translation(subject) }}</span>
     </div>
     <VueFlow
       :key="renderCounter"
@@ -66,6 +85,12 @@ watch(width, (newWidth: number) => {
       :max-zoom="2"
       panemova
     />
+    <div class="absolute w-full text-center">
+      <HText size="text-xl" :dark="false">
+        Espacio Hacker de conocimiento abierto, experimentación y aprendizaje
+        colectivo
+      </HText>
+    </div>
   </div>
 </template>
 
@@ -76,7 +101,7 @@ watch(width, (newWidth: number) => {
 @import "@vue-flow/core/dist/theme-default.css";
 
 .vue-flow__node:hover {
-  filter: drop-shadow(0 0 40px rgba(172, 252, 81, 0.95)) !important;
+  filter: drop-shadow(0 0 40px rgba(172, 252, 81, 0.65)) !important;
 }
 
 .vue-flow__node {
@@ -91,7 +116,7 @@ watch(width, (newWidth: number) => {
     filter: drop-shadow(0 0 35px rgba(172, 252, 81, 0.45));
   }
   50% {
-    filter: drop-shadow(0 0 40px rgba(172, 252, 81, 0.55));
+    filter: drop-shadow(0 0 40px rgba(172, 252, 81, 0.5));
   }
   80% {
     filter: drop-shadow(0 0 35px rgba(172, 252, 81, 0.45));
