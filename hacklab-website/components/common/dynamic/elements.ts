@@ -86,7 +86,7 @@ export function defineNodes(
       style: {
         "background-image": "url('/images/icons/society_white.png')",
       },
-    },
+    }
   ];
 
   initialElements.map((i) => {

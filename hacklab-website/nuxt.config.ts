@@ -9,7 +9,10 @@ export default defineNuxtConfig({
       link: [{
         rel: 'icon',
         href: 'favicon.ico'
-      }]
+      }],
+      htmlAttrs: {
+        'data-theme': 'black'
+      }
     }
   },
   vite: {

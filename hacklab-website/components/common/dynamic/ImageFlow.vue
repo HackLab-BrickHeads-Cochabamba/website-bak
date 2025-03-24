@@ -7,7 +7,7 @@ import { defineNodes } from "./elements";
 
 const { onPaneReady, onNodeMouseEnter, panOnDrag } = useVueFlow();
 panOnDrag.value = false;
-const subject = ref("education");
+const subject = ref("technology");
 const zoom = ref(2);
 const elements = ref(redefineNode(window.innerWidth));
 
@@ -15,8 +15,8 @@ function redefineNode(width: number): Elements {
   
   const elements: Elements = defineNodes(
     Math.round(0.125 * width),
-    Math.round(0.09 * width),
-    Math.round(0.065 * width)
+    Math.round(0.1 * width),
+    Math.round(0.05 * width)
   );
 
   return elements
@@ -43,12 +43,13 @@ const translation = (key: string) => {
 </script>
 
 <template>
-  <div :style="{ width: '100%' }" class="relative xl:h-[800px] lg:h-[600px] md:h-[500px] sm:h-[350px] h-[350px]">
+  <div :style="{ width: '100%' }" class="relative xl:h-[800px] lg:h-[600px] md:h-[500px] sm:h-[350px] h-[200px]">
     <div
       class="
         absolute uppercase flex justify-center items-center h-full w-full text-primary-content
-        xl:text-9xl lg:text-6xl md:text-4xl sm:text-3xl text-2xl
+        xl:text-9xl lg:text-6xl md:text-4xl sm:text-3xl text-lg
         xl:tracking-[4rem] lg:tracking-[2rem] md:tracking-[2rem] sm:tracking-[1rem] tracking-[1rem]
+        pb-3
       "
     >
       <span class="pt-4 -mr-6">{{ translation(subject) }}</span>
