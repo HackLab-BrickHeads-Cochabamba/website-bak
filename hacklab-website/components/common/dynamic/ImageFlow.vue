@@ -1,26 +1,42 @@
 <script lang="ts" setup>
 import { VueFlow, useVueFlow } from "@vue-flow/core";
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import type { Elements } from "@vue-flow/core";
 import { defineNodes } from "./elements";
 
-
 const { onPaneReady, onNodeMouseEnter, panOnDrag } = useVueFlow();
 panOnDrag.value = false;
+
 const subject = ref("technology");
+const subjectIndex = ref(0);
+const subjects = [
+  'technology',
+  'education',
+  'science',
+  'society',
+]
+const translations = {
+  technology: "Tecnología",
+  science: "Ciencia",
+  society: "Sociedad",
+  education: "Educación",
+};
 const zoom = ref(2);
 const elements = ref(redefineNode(window.innerWidth));
+const timer = ref<number | undefined>(undefined);
 
 function redefineNode(width: number): Elements {
-  
   const elements: Elements = defineNodes(
     Math.round(0.125 * width),
     Math.round(0.1 * width),
     Math.round(0.05 * width)
   );
-
   return elements
 }
+
+const translation = (key: string) => {
+  return translations[key];
+};
 
 onPaneReady(({ fitView }) => {
   fitView();
@@ -28,18 +44,19 @@ onPaneReady(({ fitView }) => {
 
 onNodeMouseEnter(({ node }) => {
   subject.value = node.id;
+  subjectIndex.value = subjects.findIndex((name)=> name === subject.value) 
 });
 
-const translations = {
-  technology: "Tecnología",
-  science: "Ciencia",
-  society: "Sociedad",
-  education: "Educación",
-};
+onMounted(() => {
+  timer.value = setInterval(() => {
+    subjectIndex.value = (subjectIndex.value + 1) % subjects.length
+    subject.value = subjects[subjectIndex.value] 
+  }, 3000)
+})
 
-const translation = (key: string) => {
-  return translations[key];
-};
+onUnmounted(() => {
+  clearInterval(timer.value)
+})
 </script>
 
 <template>
@@ -52,7 +69,7 @@ const translation = (key: string) => {
         pb-3
       "
     >
-      <span class="pt-4 -mr-6">{{ translation(subject) }}</span>
+      <span class="pt-4 -mr-6 opacity-50">{{ translation(subject) }}</span>
     </div>
     <VueFlow
       v-model="elements"
@@ -70,7 +87,7 @@ const translation = (key: string) => {
 @import "@vue-flow/core/dist/theme-default.css";
 
 .vue-flow__node:hover {
-  filter: drop-shadow(0 0 15px rgba(172, 252, 81, 0.65)) !important;
+  filter: drop-shadow(0 0 20px rgba(172, 252, 81, 0.85)) !important;
 }
 
 .vue-flow__node {
@@ -79,19 +96,19 @@ const translation = (key: string) => {
 
 @keyframes blink {
   0% {
-    filter: drop-shadow(0 0 10px rgba(172, 252, 81, 0.35));
+    filter: drop-shadow(0 0 20px rgba(172, 252, 81, 0.70));
   }
   30% {
-    filter: drop-shadow(0 0 12px rgba(172, 252, 81, 0.45));
+    filter: drop-shadow(0 0 25px rgba(172, 252, 81, 0.80));
   }
   50% {
-    filter: drop-shadow(0 0 15px rgba(172, 252, 81, 0.5));
+    filter: drop-shadow(0 0 25px rgba(172, 252, 81, 0.85));
   }
   80% {
-    filter: drop-shadow(0 0 12px rgba(172, 252, 81, 0.45));
+    filter: drop-shadow(0 0 25px rgba(172, 252, 81, 0.80));
   }
   100% {
-    filter: drop-shadow(0 0 10px rgba(172, 252, 81, 0.35));
+    filter: drop-shadow(0 0 20px rgba(172, 252, 81, 0.70));
   }
 }
 </style>
