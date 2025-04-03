@@ -13,7 +13,7 @@
     { name: "Facebook", link: "https://www.facebook.com/HackLabBrickHeads" },
     { name: "Instagram", link: "https://www.instagram.com/hacklabbrickheads/" },
     { name: "LinkedIn", link: "https://www.linkedin.com/company/hacklab-brickheads-cochabamba/" },
-    { name: "Tiktok", link: "https://www.tiktok.com/@hacklab.brickheads" },
+    //{ name: "Tiktok", link: "https://www.tiktok.com/@hacklab.brickheads" },
     { name: "YouTube", link: "https://www.youtube.com/@HackLabBrickHeads" },
   ];
 </script>
