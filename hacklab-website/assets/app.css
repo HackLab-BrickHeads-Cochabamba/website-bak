@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "black";
+  default: true;
+  
+  --color-base-content: #1FD750;
+}
+
+body {
+  font-family: 'Oxanium', sans-serif;
+}
