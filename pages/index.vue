@@ -1,23 +1,24 @@
 <script setup>
-  import { ref, watch } from 'vue'
-  import { useWindowSize } from "@vueuse/core";
-  import ImageFlow from '~/components/common/dynamic/ImageFlow.vue';
-  const { width } = useWindowSize();
-  const renderCounter = ref(1);
+import { useWindowSize } from '@vueuse/core'
+import { ref, watch } from 'vue'
+import ImageFlow from '~/components/common/dynamic/ImageFlow.vue'
 
-  const forceRender = () => {
-    console.log('demo')
-    renderCounter.value += 1;
-  }
+const { width } = useWindowSize()
+const renderCounter = ref(1)
 
-  watch(
-    width,
-    () => {
-      forceRender();
-    },
-    { immediate: false }
-  );
+function forceRender() {
+  renderCounter.value += 1
+}
+
+watch(
+  width,
+  () => {
+    forceRender()
+  },
+  { immediate: false },
+)
 </script>
+
 <template>
   <div>
     <ClientOnly>
@@ -70,7 +71,7 @@
                 debería privarse.
               </li>
               <li>
-                La tecnología es un medio, mas no el fin. Es una herramienta de las muchas 
+                La tecnología es un medio, mas no el fin. Es una herramienta de las muchas
                 para la transformación y evolución a una sociedad mejor.
               </li>
               <li>

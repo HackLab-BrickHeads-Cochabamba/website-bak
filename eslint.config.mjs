@@ -1,11 +1,7 @@
-// import antfu from '@antfu/eslint-config'
-// @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
+import antfu from '@antfu/eslint-config'
 
-// export default antfu({
-//   vue: true,
-//   typescript: true,
-//   javascript: true,
-// })
-export default withNuxt({
+export default antfu({
+  vue: true,
+  typescript: true,
+  javascript: true,
 })

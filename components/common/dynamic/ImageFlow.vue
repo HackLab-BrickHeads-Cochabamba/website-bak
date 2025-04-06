@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { VueFlow, useVueFlow } from "@vue-flow/core";
-import { ref, onMounted, onUnmounted } from "vue";
-import type { Elements } from "@vue-flow/core";
-import { defineNodes } from "./elements";
+import type { Elements } from '@vue-flow/core'
+import { useVueFlow, VueFlow } from '@vue-flow/core'
+import { onMounted, onUnmounted, ref } from 'vue'
+import { defineNodes } from './elements'
 
-const { onPaneReady, onNodeMouseEnter, panOnDrag } = useVueFlow();
-panOnDrag.value = false;
+const { onPaneReady, onNodeMouseEnter, panOnDrag } = useVueFlow()
+panOnDrag.value = false
 
-const subject = ref("technology");
-const subjectIndex = ref(0);
+const subject = ref('technology')
+const subjectIndex = ref(0)
 const subjects = [
   'technology',
   'education',
@@ -16,51 +16,50 @@ const subjects = [
   'society',
 ]
 const translations = {
-  technology: "Tecnología",
-  science: "Ciencia",
-  society: "Sociedad",
-  education: "Educación",
-};
-const zoom = ref(2);
-const flowView = ref(null);
-const elements = ref(redefineNode(window.innerWidth));
-const timer = ref<number | undefined>(undefined);
+  technology: 'Tecnología',
+  science: 'Ciencia',
+  society: 'Sociedad',
+  education: 'Educación',
+}
+const zoom = ref(2)
+const flowView = ref(null)
+const elements = ref(redefineNode(window.innerWidth))
+const timer = ref<number | undefined>(undefined)
 
 function redefineNode(width: number): Elements {
   const elements: Elements = defineNodes(
     Math.round(0.125 * width),
     Math.round(0.1 * width),
-    Math.round(0.05 * width)
-  );
+    Math.round(0.05 * width),
+  )
   return elements
 }
 
-const translation = (key: string) => {
-  return translations[key];
-};
+function translation(key: string) {
+  return translations[key]
+}
 
 onPaneReady(({ fitView }) => {
-  fitView();
-});
+  fitView()
+})
 
 onNodeMouseEnter(({ node }) => {
-  subject.value = node.id;
-  subjectIndex.value = subjects.findIndex((name)=> name === subject.value) 
-});
+  subject.value = node.id
+  subjectIndex.value = subjects.findIndex(name => name === subject.value)
+})
 
-const activeScrollableWheel = (event) => {
+function activeScrollableWheel(event) {
   if (event.deltaY !== 0) {
-    window.scrollBy(0, event.deltaY);
+    window.scrollBy(0, event.deltaY)
   }
 }
 
 onMounted(() => {
   timer.value = setInterval(() => {
     subjectIndex.value = (subjectIndex.value + 1) % subjects.length
-    subject.value = subjects[subjectIndex.value] 
-
+    subject.value = subjects[subjectIndex.value]
   }, 3000)
-  flowView.value.$el.addEventListener('wheel', activeScrollableWheel, { passive: false });
+  flowView.value.$el.addEventListener('wheel', activeScrollableWheel, { passive: false })
 })
 
 onUnmounted(() => {
