@@ -68,10 +68,6 @@ const year = new Date().getFullYear()
           </a>
         </div>
       </div>
-
-      <div class="border-t border-gray-700 mt-8 pt-4 text-center text-gray-400">
-        <p>Made with <Icon name="uil-heart" size="15" /> by HackLab BrickHeads {{ year }}</p>
-      </div>
     </div>
   </footer>
 </template>
