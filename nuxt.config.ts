@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     }
   },
   image: {
-    domains: ['localhost', 'brickheads.space'],
+    domains: ['localhost', 'brickheads.space', 'hacklab-brickheads.pages.dev'],
     quality: 50,
   },
   fonts: {
