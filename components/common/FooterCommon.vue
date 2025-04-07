@@ -25,22 +25,29 @@ const year = new Date().getFullYear()
           <h3 class="text-base font-bold mb-4 md:text-3xl">
             Contacto
           </h3>
-          <div class="flex items-top space-x-2 hover:text-gray-300 transition-colors">
-            <Icon name="ion:mail-outline" size="30" />
-            <p>hacklab.brickheads@gmail.com</p>
+          <div>
+            <a href="mailto:hacklab.brickheads@gmail.com" target="_blank" class="flex items-top space-x-2 hover:text-gray-300 transition-colors">
+              <Icon name="ion:mail-outline" size="30" />
+              <p>hacklab.brickheads@gmail.com</p>
+            </a>
           </div>
-          <div class="flex items-top space-x-2 hover:text-gray-300 transition-colors">
-            <Icon name="uil:whatsapp" size="30" />
-            <p>+591 79723232</p>
+          
+          <div>
+            <a href="https://wa.me/59179723232" target="_blank" class="flex items-top space-x-2 hover:text-gray-300 transition-colors">
+              <Icon name="uil:whatsapp" size="30" />
+              <p>+591 79723232</p>
+            </a>
           </div>
 
-          <div class="flex items-top space-x-2 hover:text-gray-300 transition-colors">
-            <Icon name="uil:location-point" size="30" />
+          <div>
+            <a href="https://maps.app.goo.gl/nxDPhyc5udhGaaR58" target="_blank" class="flex items-top space-x-2 hover:text-gray-300 transition-colors">
+              <Icon name="uil:location-point" size="30" />
             <p>
               Proyecto mARTadero <br>
               Calle 27 de Agosto y Ollantay <br>
               Cochabamba, Bolivia
             </p>
+            </a>
           </div>
         </div>
 
