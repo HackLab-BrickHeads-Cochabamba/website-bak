@@ -31,7 +31,12 @@ export default defineNuxtConfig({
     }
   },
   image: {
-    dir: 'assets/optimized-images',
+    domains: ['localhost', 'brickheads.space'],
+    sizes: {
+      default: [320, 640, 960, 1280],
+      mobile: [320, 640],
+      desktop: [640, 960, 1280],
+    },
   },
   fonts: {
     google: {

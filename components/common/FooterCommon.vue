@@ -17,7 +17,7 @@ const year = new Date().getFullYear()
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Logo Section (left column) -->
         <div class="hidden md:block w-[120px] md:w-[200px] p-2">
-          <NuxtImg src="hacklab/square_white.png" />
+          <NuxtImg src="images/square_white.png" />
         </div>
 
         <!-- Sección de Contacto (middle column) -->

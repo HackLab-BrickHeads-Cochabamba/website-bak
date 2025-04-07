@@ -13,7 +13,7 @@ withDefaults(defineProps<{ routes?: Array<RoutesProps> }>(), {
   <div class="navbar bg-base-100 shadow-sm">
     <div class="flex-1">
       <div class="w-[120px] md:w-[180px] p-2">
-        <NuxtImg src="hacklab/large_white.png" />
+        <NuxtImg src="images/large_white.png" />
       </div>
     </div>
     <div class="flex-none">
