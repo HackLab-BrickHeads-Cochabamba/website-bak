@@ -17,6 +17,18 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        onwarn(warning, warn) {
+            // Ignore sourcemap warnings
+            if (warning.code === 'SOURCEMAP_BROKEN') {
+                return;
+            }
+  
+            warn(warning);
+        }
+      }
+    }
   },
   image: {
     dir: 'assets/optimized-images',
